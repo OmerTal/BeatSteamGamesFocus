@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "jsx": "react",
+        "moduleResolution": "Node",
+        "paths": {
+            "@*": [
+                "./*"
+            ]
+        },
+        "strict": true,
+        "target": "ESNext",
+        "module": "ESNext",
+        "types": ["node", "vite/client"],
+        "allowSyntheticDefaultImports": true,
+        "lib": ["ESNext", "DOM"]
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": ["node_modules"]
+}
