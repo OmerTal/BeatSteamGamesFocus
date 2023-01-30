@@ -3,33 +3,29 @@ import { useState } from "react";
 import { steamGame } from "@/consts/steamGames";
 import { useAsync } from "@/services/customHooks";
 import { getSteamGames } from "@/services/steamService";
+import GameCard from "@components/common/GameCard/gameCard";
+import "./steamGames.scss";
 
 const SteamGames = () => {
   const [games, setGames] = useState<steamGame[]>([]);
 
-  useAsync(
-    getSteamGames,
-    setGames,
-    [],
-    () => {
-      console.error('fuck');
-    }
-  );
+  useAsync(getSteamGames, setGames, [], () => {
+    console.error("fuck");
+  });
 
   return (
     <>
-      {!!games && games.length !== 0 ? (
+      {!games || games.length === 0 ? (
+        <div>Loading...</div>
+      ) : (
         <div>
           Total games: {games.length}
-          {games.map((curGame) => (
-            <div key={curGame.name}>
-              <span>Name: {curGame.name}</span> <br/>
-              <span>Play Time: {curGame.playTime}</span>
-            </div>
-          ))}
+          <div className="game-card-list">
+            {games.map((curGame) => (
+              <GameCard game={curGame} />
+            ))}
+          </div>
         </div>
-      ) : (
-        <div>Loading...</div>
       )}
     </>
   );

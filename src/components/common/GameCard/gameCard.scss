@@ -1,0 +1,23 @@
+// @import "@/consts.scss";
+
+.game-card {
+  display: flex;
+  flex: 1 1 15%;
+  flex-direction: column;
+  margin: 0 4em 2em 4em;
+
+  .game-logo {
+    border-radius: 2em 2em 0 0;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    background-color: gainsboro;
+    padding-left: 1em;
+
+    span:last-child {
+      padding-bottom: 1em;
+    }
+  }
+}
