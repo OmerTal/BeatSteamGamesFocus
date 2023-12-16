@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./gameCard.scss";
+import "./navbar.scss";
 
 const Navbar = () => {
   return <div>Here will be a navbar</div>;

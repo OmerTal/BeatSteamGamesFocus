@@ -5,6 +5,7 @@
   flex: 1 1 15%;
   flex-direction: column;
   margin: 0 4em 2em 4em;
+  width: 20%;
 
   .game-logo {
     border-radius: 2em 2em 0 0;
@@ -20,6 +21,10 @@
       font-size: 1.5em;
       font-weight: 400;
       color: $steam-main;
+
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
 
     span:last-child {
