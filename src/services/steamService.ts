@@ -1,5 +1,5 @@
-import { steamGame } from "@consts/steamGames";
-import * as convertXML from "xml-js";
+import { steamGame } from "@consts/Interfaces/steamGames";
+import { xml2json } from "xml-js";
 import http from "./http";
 
 const STEAM_PATH = `https://steamcommunity.com/id/${
@@ -22,7 +22,7 @@ export const getSteamGames = async (): Promise<steamGame[]> => {
 };
 
 const parseSteamXML = (xml: string) =>
-  convertXML.xml2json(xml, { compact: true, spaces: 4 });
+  xml2json(xml, { compact: true, spaces: 4 });
 
 const formatJson = (json: string): steamGame[] => {
   const unformattedJson = JSON.parse(json)["gamesList"]["games"]["game"];

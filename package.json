@@ -16,11 +16,13 @@
         "typewatch": "tsc --noEmit --watch"
     },
     "dependencies": {
+        "@omer-tal/react-hook-use-async": "^1.0.1",
         "axios": "^1.2.6",
         "dns": "^0.2.2",
         "howlongtobeat": "^1.7.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-palette": "^1.0.2",
         "stream-browserify": "^3.0.0",
         "vite-tsconfig-paths": "^4.0.5",
         "xml-js": "^1.6.11"
