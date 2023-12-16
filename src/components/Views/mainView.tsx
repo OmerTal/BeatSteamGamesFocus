@@ -1,10 +1,12 @@
 import * as React from "react";
 import SteamGames from "./SteamGames/steamGames";
+import Navbar from "@components/common/Navbar/navbar";
 
 const MainView = () => {
   return (
     <div>
-      Here will be navbar <br />
+      <Navbar />
+      <br />
       <SteamGames />
     </div>
   );

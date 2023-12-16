@@ -1,7 +1,7 @@
+@import "/src/consts.scss";
+
 .library-loading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include base-structure;
 
   .loading-title {
     font-size: 2em;
@@ -13,10 +13,73 @@
   }
 }
 
-.game-card-list {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 2em;
-  width: 66%;
-  margin: auto;
+.library-container {
+  @include base-structure;
+  gap: 15px;
+
+  .titles {
+    @include base-structure;
+
+    .title {
+      font-size: 3em;
+      color: $steam-text-light;
+    }
+
+    .sub-title {
+      font-size: 1.2em;
+      color: $steam-text-light;
+    }
+  }
+
+  .filters {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+
+    .search-bar-container {
+      color: #fff;
+
+      .search-bar {
+        width: 336px;
+        padding: 12px 56px 12px 40px;
+        align-items: center;
+        gap: 12px;
+        border-radius: 15px;
+        border: none;
+        background: #373737;
+        color: inherit;
+
+        &::placeholder {
+          color: inherit;
+        }
+
+        &:focus-visible {
+          outline: 1px solid #c7d5e0;
+        }
+      }
+
+      .search-bar-icon {
+        position: relative;
+        left: 2em;
+        top: 0.2em;
+        stroke-width: 1px;
+      }
+    }
+  }
+
+  .game-card-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2em;
+    width: 66%;
+    margin: auto;
+
+    .no-games {
+      font-size: 2em;
+      width: 100%;
+      text-align: center;
+      color: $steam-text-dark;
+    }
+  }
 }
