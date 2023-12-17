@@ -1,11 +1,12 @@
 import * as React from "react";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { steamGame } from "@consts/Interfaces/steamGames";
 import { useAsync } from "@omer-tal/react-hook-use-async";
 import { getSteamGames } from "@/services/steamService";
 import GameCard from "@components/common/GameCard/gameCard";
 import SteamLoad from "@assets/steam-load.gif";
 import { TfiSearch } from "react-icons/tfi";
+import { useVirtualizer } from "@tanstack/react-virtual";
 import "./steamGames.scss";
 
 const SteamGames = () => {
@@ -13,6 +14,15 @@ const SteamGames = () => {
   const [filteredGames, setFilteredGames] = useState<steamGame[]>(games);
   const [sortProperty, setSortProperty] = useState<keyof steamGame>("playTime");
   const [searchValue, setSearchValue] = useState<string>("");
+
+  const parentRef = useRef<HTMLDivElement>(null);
+
+  const rowVirtualizer = useVirtualizer({
+    count: filteredGames.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 250,
+    overscan: 9,
+  });
 
   useAsync(
     getSteamGames,
@@ -93,9 +103,35 @@ const SteamGames = () => {
                 No games found for search term '{searchValue}'
               </span>
             ) : (
-              sortedGames.map((curGame) => (
-                <GameCard key={curGame.appID} game={curGame} />
-              ))
+              <div
+                ref={parentRef}
+                style={{
+                  height: `500px`,
+                  width: "100%",
+                  overflow: "auto",
+                }}
+              >
+                {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+                  const currIndex = virtualRow.index;
+                  return (
+                    <React.Fragment key={virtualRow.key}>
+                      {virtualRow.index % 3 == 0 && (
+                        <div
+                          style={{
+                            width: "100%",
+                            height: `${virtualRow.size}px`,
+                            display: "flex",
+                          }}
+                        >
+                          <GameCard game={filteredGames[currIndex]} />
+                          <GameCard game={filteredGames[currIndex + 1]} />
+                          <GameCard game={filteredGames[currIndex + 2]} />
+                        </div>
+                      )}
+                    </React.Fragment>
+                  );
+                })}
+              </div>
             )}
           </div>
         </div>
