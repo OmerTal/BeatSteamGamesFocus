@@ -1,0 +1,21 @@
+.game-library-list-container {
+  height: 62vh;
+  width: 100%;
+  overflow: auto;
+
+  .game-library-list {
+    position: relative;
+
+    // .game-library-column {
+    //     --virtualColumnSize
+    //     --virtualRowSize
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     width: --virtualColumnSize;
+    //     height: --virtualRowSize;
+    //     transform: `translateX(${virtualColumn.start}px) translateY(${virtualRow.start}px)`;
+    //     display: flex;
+    // }
+  }
+}
