@@ -15,13 +15,28 @@ const SteamGames = () => {
   const [sortProperty, setSortProperty] = useState<keyof steamGame>("playTime");
   const [searchValue, setSearchValue] = useState<string>("");
 
+  const createGamesMatrix = React.useCallback(() => {
+    const arr: steamGame[][] = [];
+    const games = filteredGames.map((x) => x);
+    while (games.length) arr.push(games.splice(0, 3));
+    return arr;
+  }, [filteredGames]);
+
   const parentRef = useRef<HTMLDivElement>(null);
 
   const rowVirtualizer = useVirtualizer({
-    count: filteredGames.length,
+    count: filteredGames.length - 3,
     getScrollElement: () => parentRef.current,
-    estimateSize: () => 250,
-    overscan: 9,
+    estimateSize: () => 235,
+    overscan: 1,
+  });
+
+  const columnVirtualizer = useVirtualizer({
+    horizontal: true,
+    count: 3,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 400,
+    overscan: 1,
   });
 
   useAsync(
@@ -106,31 +121,45 @@ const SteamGames = () => {
               <div
                 ref={parentRef}
                 style={{
-                  height: `500px`,
+                  height: `62vh`,
                   width: "100%",
                   overflow: "auto",
                 }}
               >
-                {rowVirtualizer.getVirtualItems().map((virtualRow) => {
-                  const currIndex = virtualRow.index;
-                  return (
+                <div
+                  style={{
+                    position: "relative",
+                  }}
+                >
+                  {rowVirtualizer.getVirtualItems().map((virtualRow) => (
                     <React.Fragment key={virtualRow.key}>
-                      {virtualRow.index % 3 == 0 && (
-                        <div
-                          style={{
-                            width: "100%",
-                            height: `${virtualRow.size}px`,
-                            display: "flex",
-                          }}
-                        >
-                          <GameCard game={filteredGames[currIndex]} />
-                          <GameCard game={filteredGames[currIndex + 1]} />
-                          <GameCard game={filteredGames[currIndex + 2]} />
-                        </div>
-                      )}
+                      {columnVirtualizer
+                        .getVirtualItems()
+                        .map((virtualColumn) => (
+                          <div
+                            key={virtualColumn.key}
+                            style={{
+                              position: "absolute",
+                              top: 0,
+                              left: 0,
+                              width: `${virtualColumn.size}px`,
+                              height: `${virtualRow.size}px`,
+                              transform: `translateX(${virtualColumn.start}px) translateY(${virtualRow.start}px)`,
+                              display: "flex",
+                            }}
+                          >
+                            <GameCard
+                              game={
+                                createGamesMatrix()[virtualRow.index][
+                                  virtualColumn.index
+                                ]
+                              }
+                            />
+                          </div>
+                        ))}
                     </React.Fragment>
-                  );
-                })}
+                  ))}
+                </div>
               </div>
             )}
           </div>
