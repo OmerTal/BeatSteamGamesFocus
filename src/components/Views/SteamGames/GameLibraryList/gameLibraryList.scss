@@ -1,7 +1,20 @@
+@import "/src/consts.scss";
+
 .game-library-list-container {
   height: 62vh;
   width: 100%;
   overflow: auto;
+
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: $steam-text-light;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: $steam-text-dark;
+  }
 
   .game-library-list {
     position: relative;

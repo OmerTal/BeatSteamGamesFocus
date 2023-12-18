@@ -14,13 +14,14 @@ const GameLibraryList = ({ filteredGames }: GameLibraryListProps) => {
     const arr: steamGame[][] = [];
     const games = filteredGames.map((x) => x);
     while (games.length) arr.push(games.splice(0, 3));
+    console.count("kaki");
     return arr;
   }, [filteredGames]);
 
   const parentRef = useRef<HTMLDivElement>(null);
 
   const rowVirtualizer = useVirtualizer({
-    count: filteredGames.length - 3,
+    count: filteredGames.length,
     getScrollElement: () => parentRef.current,
     estimateSize: () => 235,
     overscan: 1,
