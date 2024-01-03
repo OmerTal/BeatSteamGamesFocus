@@ -67,7 +67,11 @@ const SteamGames = () => {
         <div className="library-container">
           <div className="titles">
             <span className="title">Your Library</span>
-            <span className="sub-title">Total games: {games.length}</span>
+            <span className="sub-title">
+              Total games: {games.length}
+              {filteredGames.length !== games.length &&
+                `, Filtered games: ${filteredGames.length}`}
+            </span>
           </div>
           <Filters
             searchValue={searchValue}
