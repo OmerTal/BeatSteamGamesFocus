@@ -39,7 +39,7 @@ const SteamGames = () => {
     return sortProperty === "playTime" ? sortedGames.reverse() : sortedGames;
   }, [filteredGames, sortProperty]);
 
-  const setProperty = (property: keyof steamGame) => () => {
+  const setProperty = (property: keyof steamGame) => {
     setSortProperty(property);
   };
 

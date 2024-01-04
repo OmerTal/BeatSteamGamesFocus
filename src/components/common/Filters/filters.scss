@@ -33,4 +33,32 @@
       stroke-width: 1px;
     }
   }
+
+  .sort-by-container {
+    display: flex;
+    align-items: center;
+
+    .sort-by-content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      width: 6em;
+
+      svg {
+        cursor: pointer;
+
+        &[flip-sort-icon="true"] {
+          transform: rotateX(180deg);
+        }
+      }
+
+      .filter-popper-content {
+        visibility: hidden;
+
+        &[show-filter-popper="true"] {
+          visibility: visible;
+        }
+      }
+    }
+  }
 }
