@@ -6,15 +6,15 @@ import { useVirtualizer } from "@tanstack/react-virtual";
 import "./gameLibraryList.scss";
 
 interface GameLibraryListProps {
-  filteredGames: steamGame[];
+  sortedGames: steamGame[];
 }
 
 const ROW_SIZE = 235;
 const COLUMN_SIZE = 400;
 
-const GameLibraryList = ({ filteredGames }: GameLibraryListProps) => {
+const GameLibraryList = ({ sortedGames }: GameLibraryListProps) => {
   const [gamesMatrix, setGamesMatrix] = useState<steamGame[][]>([[]]);
-
+  console.count("rendered game library list");
   const parentRef = useRef<HTMLDivElement>(null);
 
   const rowVirtualizer = useVirtualizer({
@@ -34,10 +34,10 @@ const GameLibraryList = ({ filteredGames }: GameLibraryListProps) => {
 
   useEffect(() => {
     const arr: steamGame[][] = [];
-    const games = filteredGames.map((x) => x);
+    const games = sortedGames.map((x) => x);
     while (games.length) arr.push(games.splice(0, 3));
     setGamesMatrix(arr);
-  }, [filteredGames]);
+  }, [JSON.stringify(sortedGames)]);
 
   return (
     <>

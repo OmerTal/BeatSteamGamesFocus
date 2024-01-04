@@ -7,6 +7,7 @@ import SteamLoad from "@assets/steam-load.gif";
 import "./steamGames.scss";
 import GameLibraryList from "./GameLibraryList/gameLibraryList";
 import Filters from "@components/common/Filters/filters";
+import { startCase } from "lodash";
 
 const SteamGames = () => {
   const [games, setGames] = useState<steamGame[]>([]);
@@ -78,13 +79,14 @@ const SteamGames = () => {
             handleInputChange={handleInputChange}
             setProperty={setProperty}
           />
+          <span className="sub-title">Sorted by {startCase(sortProperty)}</span>
           <div className="game-card-list">
             {sortedGames.length === 0 ? (
               <span className="no-games">
                 No games found for search term '{searchValue}'
               </span>
             ) : (
-              <GameLibraryList filteredGames={filteredGames} />
+              <GameLibraryList sortedGames={sortedGames} />
             )}
           </div>
         </div>

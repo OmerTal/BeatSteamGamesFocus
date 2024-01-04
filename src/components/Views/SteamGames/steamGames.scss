@@ -27,8 +27,12 @@
 
     .sub-title {
       font-size: 1.2em;
-      color: $steam-text-light;
     }
+  }
+
+  .sub-title {
+    font-size: 1em;
+    color: $steam-text-light;
   }
 
   .game-card-list {
