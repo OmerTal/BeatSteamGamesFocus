@@ -1,0 +1,67 @@
+@import "/src/consts.scss";
+
+.game-library-list-container {
+  height: 62vh;
+  width: 100%;
+  overflow: auto;
+
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: $steam-text-light;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: $steam-text-dark;
+  }
+
+  .game-library-scroll-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    right: 8vw;
+    top: 89vh;
+
+    color: $steam-blue;
+
+    &:hover {
+      cursor: pointer;
+      color: rgba($steam-blue, 0.7);
+
+      .game-library-scroll-button::before {
+        background-color: rgba($steam-blue, 0.7);
+      }
+    }
+
+    .game-library-scroll-button {
+      display: flex;
+      align-items: center;
+
+      svg {
+        fill: $steam-main;
+        height: 19px;
+        position: relative;
+        right: 24px;
+      }
+
+      &::before {
+        content: "";
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: $steam-blue;
+      }
+    }
+
+    .game-library-scroll-button-text {
+      text-transform: uppercase;
+    }
+  }
+
+  .game-library-list {
+    position: relative;
+  }
+}

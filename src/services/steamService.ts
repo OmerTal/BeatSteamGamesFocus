@@ -1,8 +1,10 @@
-import { steamGame } from "@consts/steamGames";
-import * as convertXML from "xml-js";
+import { steamGame } from "@consts/Interfaces/steamGames";
+import { xml2json } from "xml-js";
 import http from "./http";
 
-const STEAM_PATH = `https://steamcommunity.com/id/${import.meta.env.VITE_STEAM_ID}/games/?tab=all`;
+const STEAM_PATH = `https://steamcommunity.com/id/${
+  import.meta.env.VITE_STEAM_ID
+}/games/?tab=all`;
 
 const headers = {
   "Content-Type": "text/xml",
@@ -14,19 +16,21 @@ export const getSteamGames = async (): Promise<steamGame[]> => {
     .get(`${STEAM_PATH}&xml=1`, { headers })
     .then((res) => formatJson(parseSteamXML(res.data)))
     .catch((reason) => {
-      console.error(reason)
-      throw reason
+      console.error(reason);
+      throw reason;
     });
 };
 
 const parseSteamXML = (xml: string) =>
-  convertXML.xml2json(xml, { compact: true, spaces: 4 });
+  xml2json(xml, { compact: true, spaces: 4 });
 
 const formatJson = (json: string): steamGame[] => {
-  const unformattedJson = JSON.parse(json)['gamesList']['games']['game'];
+  const unformattedJson = JSON.parse(json)["gamesList"]["games"]["game"];
   const formattedGames: steamGame[] = [];
   unformattedJson?.map((curGame: any) => {
-    const playTime = curGame.hasOwnProperty('hoursOnRecord') ? curGame["hoursOnRecord"]["_text"] : 0
+    const playTime = curGame.hasOwnProperty("hoursOnRecord")
+      ? curGame["hoursOnRecord"]["_text"]
+      : 0;
     formattedGames.push({
       appID: curGame["appID"]["_text"],
       logo: curGame["logo"]["_cdata"],

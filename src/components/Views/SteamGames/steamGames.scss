@@ -1,0 +1,52 @@
+@import "/src/consts.scss";
+
+.library-loading-container {
+  @include base-structure;
+
+  .loading-title {
+    font-size: 2em;
+  }
+
+  .loading-gif {
+    width: 15em;
+    height: 15em;
+  }
+}
+
+.library-container {
+  @include base-structure;
+  gap: 15px;
+
+  .titles {
+    @include base-structure;
+
+    .title {
+      font-size: 3em;
+      color: $steam-text-light;
+    }
+
+    .sub-title {
+      font-size: 1.2em;
+    }
+  }
+
+  .sub-title {
+    font-size: 1em;
+    color: $steam-text-light;
+  }
+
+  .game-card-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2em;
+    width: 66%;
+    margin: auto;
+
+    .no-games {
+      font-size: 2em;
+      width: 100%;
+      text-align: center;
+      color: $steam-text-dark;
+    }
+  }
+}

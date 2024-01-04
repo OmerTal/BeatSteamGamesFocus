@@ -16,11 +16,16 @@
         "typewatch": "tsc --noEmit --watch"
     },
     "dependencies": {
+        "@omer-tal/react-hook-use-async": "^1.0.1",
+        "@tanstack/react-virtual": "^3.0.1",
         "axios": "^1.2.6",
         "dns": "^0.2.2",
         "howlongtobeat": "^1.7.0",
+        "lodash": "^4.17.21",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-icons": "^4.12.0",
+        "react-palette": "^1.0.2",
         "stream-browserify": "^3.0.0",
         "vite-tsconfig-paths": "^4.0.5",
         "xml-js": "^1.6.11"
@@ -29,8 +34,10 @@
         "@types/react": "^18.0.24",
         "@types/react-dom": "^18.0.8",
         "@types/xml2js": "^0.4.11",
+        "@vitejs/plugin-react": "^3.0.1",
         "babel-preset-nano-react-app": "^0.1.0",
+        "sass": "^1.57.1",
         "typescript": "^4.8.4",
-        "vite": "^3.2.5"
+        "vite": "^4.0.4"
     }
 }

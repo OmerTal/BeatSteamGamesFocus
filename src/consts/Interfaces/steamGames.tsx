@@ -1,6 +1,6 @@
 export interface steamGame {
     appID: string;
-    logo: URL;
+    logo: string;
     name: string;
     playTime: number;
 }
